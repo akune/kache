@@ -1,14 +1,38 @@
 ### An annotation processing-based method cache provider
-##### Dependency: 
+#### Dependency after building locally: 
 ```
-<dependency>
-    <groupId>de.kune</groupId>
-    <artifactId>kache-impl</artifactId>
-    <version>0.1-SNAPSHOT</version>
-    <scope>compile</scope>
-</dependency>
+<project ...
+    <dependencies>
+        <dependency>
+            <groupId>de.kune</groupId>
+            <artifactId>kache-impl</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>
 ```
-##### Usage:
+#### Dependency using Jitpack
+Check commits / revisions at https://jitpack.io/#akune/kache
+```
+<project ...
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>com.github.akune.kache</groupId>
+            <artifactId>kache-impl</artifactId>
+            <version>ee787959af</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>
+``` 
+#### Usage:
 ```
 @Cached
 public long[] primeFactors(long input) {
