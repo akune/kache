@@ -28,9 +28,8 @@ import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
-import java.nio.CharBuffer;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -78,7 +77,6 @@ public class KacheProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-
         final TreePathScanner<Object, CompilationUnitTree> cachedScanner =
                 new TreePathScanner<Object, CompilationUnitTree>() {
 
@@ -123,6 +121,7 @@ public class KacheProcessor extends AbstractProcessor {
 
                                         String e = "return (${returnType}) ${cache}.computeIfAbsent(${key}, (___cacheParam)->${method}(${params}) );";
                                         replaceMethodBody(methodTree, replacer.apply(e));
+
                                         super.visitClassDef(classTree);
                                     }
 
