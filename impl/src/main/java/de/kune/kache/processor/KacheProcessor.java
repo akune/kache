@@ -122,21 +122,6 @@ public class KacheProcessor extends AbstractProcessor {
                                                 .replace("${returnType}", method.getReturnType().toString());
 
                                         String e = "return (${returnType}) ${cache}.computeIfAbsent(${key}, (___cacheParam)->${method}(${params}) );";
-//                                        e = parserFactory.newParser(replacer.apply(e), false, false, false).parseStatement().toString();
-//                                        StringBuilder b = new StringBuilder(e);
-//                                        // TODO: Figure out why we need this stupid work-around to fix the position of parsed statements
-//                                        while (b.length() < method.pos) {
-//                                            b.insert(0, " ");
-//                                        }
-//                                        System.out.println(b);
-//                                        JavacParser parser = parserFactory.newParser(
-//                                                b
-//                                                , false, true, true
-//                                        );
-//                                        JCTree.JCStatement statement = parser.parseStatement();
-//                                        methodTree.body = factory.Block(0, List.of(
-//                                                statement
-//                                        ));
                                         replaceMethodBody(methodTree, replacer.apply(e));
                                         super.visitClassDef(classTree);
                                     }
